@@ -1,12 +1,12 @@
 module Scalarium
   class Application
-    attr_accessor :email, :password, :slug, :run_migrations
+    attr_accessor :email, :password, :slug
 
-    def deploy
+    def deploy(options={})
       login do
         agent.get("https://manage.scalarium.com/applications/#{slug}/deployments/new") do |page|
           form = page.forms.first
-          form["deployment[migrate]"] = 1 if run_migrations
+          form["deployment[migrate]"] = 1 if options[:run_migrations]
           form.click_button
         end
       end

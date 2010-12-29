@@ -60,10 +60,9 @@ describe Scalarium::Application do
           c.email = "test@email.com"
           c.password = "password"
           c.slug = "railslove"
-          c.run_migrations = true
         end
 
-        @application.deploy
+        @application.deploy(:run_migrations => true)
       end
 
       subject { WebMock::API }
