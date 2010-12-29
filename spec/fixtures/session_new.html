@@ -1,0 +1,149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <link rel="icon" href="/images/favicon.png" type="image/png" />
+  <title>Scalarium Login</title>
+  <link href="/stylesheets/layout.css?1291053194" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/facebox.css?1291053194" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/jquery/jquery.min.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery-ui-1.7.2.custom.min.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.bgiframe.min.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/superfish/superfish.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/superfish/supersubs.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/application.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.tipTip-mod.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.easing.1.3.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.sparkline.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.color.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.flot_patch.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.flot.selection.min.js?1291053194" type="text/javascript"></script>
+<script src="/javascripts/jquery/jquery.flot.stack.min.js?1291053194" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      Scalarium.initMenus();
+
+      $("ul.sf-menu .sf-right a").live("click", function(){
+        $(this).parents("ul.sf-menu").hideSuperfishUl();
+      });
+
+    });
+
+    var $scalarium = {
+      instanceRefreshInterval: 10000,
+      logLoadingTimeout: 15000,
+      debug: false
+    };
+  </script>
+
+    <script type="text/javascript">
+      var host = document.location.host;
+      if (host == 'manage.scalarium.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-6003901-5']);
+        _gaq.push(['_setDomainName', host]);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      }
+    </script>
+</head>
+
+<body>
+
+  <div id="page">
+    <div id="center">
+      <a href="/" style="height:80px; width:120px; display:block; position:absolute; outline: none;" title="Home"></a>
+      <div id="header">
+        <ul class="horizontal-menu">
+          <li><a href="#" id="feedback">Support</a></li>
+          <li><a href="http://support.scalarium.com/faqs" target="_blank">FAQ</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+      </div>
+
+      <div id="nav">
+        <ul class="sf-menu">
+        </ul>
+          <span style="float: right">
+            <a href="/"><img alt="Zeppelin" height="75" id="zeppelin" longdesc="/images/zeppelin.png" src="/images/zeppelin.png?1291053194" width="150" /></a>
+          </span>
+      </div>
+
+      <div id="content">
+
+
+        <div class="row">
+<form action="/session" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="QVlCYGRzSoYF2govWqvwjP1Ac8kIZQTfgJFImWdssQY=" /></div>
+    <div class="column width_4">
+      <h2>Login</h2>
+      <fieldset>
+        <label for="user_email">Email</label>
+        <input id="user_email" name="user[email]" size="30" tabindex="1" type="text" />
+        <label for="user_password">Password <span style="color:#999999"> - </span><a href="/password_resets/new" style="color:#999999">Forgot Password?</a></label>
+        <input id="user_password" name="user[password]" size="30" tabindex="2" type="password" />
+      </fieldset>
+    </div>
+
+    <div class="column width_8">
+      <h2>Sign up</h2>
+      <p>If you don't have an account yet, <a href="/users/new" class="strong">sign up now</a>.</p>
+      <p>A valid <a href="http://www.amazon.com/gp/aws/registration/registration-form.html" class="strong">Amazon Web Services account</a> is required. Make sure it's enabled for use with EC2.</p>
+      <p>To learn more about Scalarium, <a href="http://www.scalarium.com/tour" class="text-link">check out our screencasts</a>.
+    </div>
+
+    <div class="column width_4 clear">
+      <hr/>
+      <input name="commit" type="submit" value="Login" />
+    </div>
+
+    <div class="column width_8">
+      <hr/>
+            <input class="link_button " type="submit" value="Sign up" name="Sign up" data-target="/account/new" />
+      <noscript><a href="/account/new">Sign up</a></noscript>
+
+    </div>
+
+</form></div>
+
+
+
+      </div>
+      <div id="push"></div>
+    </div>
+  </div>
+
+
+
+  <div id="footer">
+    <div>
+      <ul class="horizontal-menu">
+        <li style="margin-top:0px;"><a href="http://www.peritor.com"><img alt="Peritor Logo" height="40" longdesc="/images/logo-peritor.png" src="/images/logo-peritor.png?1291053194" width="115" /></a></li>
+        <li><a href="http://www.scalarium.com/blog">Blog</a></li>
+        <li><a href="http://support.scalarium.com">Support</a></li>
+        <li><a href="http://www.peritor.com/de/contact/index.html">Contact</a></li>
+        <li><a href="http://twitter.com/scalarium">Twitter</a></li>
+        <li><a href="http://www.peritor.com/de/shared/legal.html">Imprint</a></li>
+        <li><a href="http://www.peritor.com/de/shared/legal.html">Legal</a></li>
+      </ul>
+    </div>
+  </div>
+
+    <script type="text/javascript" charset="utf-8">
+      Tender = {
+        hideToggle: true,
+        widgetToggles: $('#feedback')
+      };
+    </script>
+    <script src="https://scalarium.tenderapp.com/tender_widget.js" type="text/javascript"></script>
+
+</body>
+</html>
