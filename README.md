@@ -30,9 +30,15 @@ Then from the Root directory, just run
 
     sca deploy staging
 
-Or to run migrations
+#### Other options
+
+Run migrations
 
     sca deploy staging --migrate
+
+Add a comment
+
+    sca deploy staging --comment="This is an awesome deploy!"
 
 ### Non Rails
 
