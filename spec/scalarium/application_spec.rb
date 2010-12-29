@@ -70,5 +70,22 @@ describe Scalarium::Application do
       it { should have_requested(:post, "https://manage.scalarium.com/applications/railslove/deployments").
             with {|req| req.body.match(/migrate%5D=1/) } }
     end
+
+    context "when deploying with a comment" do
+      before do
+        @application.config do |c|
+          c.email = "test@email.com"
+          c.password = "password"
+          c.slug = "railslove"
+        end
+
+        @application.deploy(:comment => "Hello")
+      end
+
+      subject { WebMock::API }
+
+      it { should have_requested(:post, "https://manage.scalarium.com/applications/railslove/deployments").
+            with {|req| req.body.match(/comment%5D=Hello/) } }
+    end
   end
 end

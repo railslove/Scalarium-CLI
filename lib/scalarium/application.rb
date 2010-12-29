@@ -7,6 +7,7 @@ module Scalarium
         agent.get("https://manage.scalarium.com/applications/#{slug}/deployments/new") do |page|
           form = page.forms.first
           form["deployment[migrate]"] = 1 if options[:run_migrations]
+          form["deployment[comment]"] = options[:comment]
           form.click_button
         end
       end
