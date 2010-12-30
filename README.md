@@ -30,6 +30,10 @@ Then from the Root directory, just run
 
     sca deploy staging
 
+You have access to all Scalarium deployment commands
+
+    sca [deploy|rollback|start|stop|restart|undeploy]
+
 #### Other options
 
 Run migrations
