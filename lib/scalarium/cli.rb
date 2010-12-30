@@ -2,12 +2,22 @@ require "thor"
 
 module Scalarium
   class CLI < Thor
-    desc "deploy [staging|production]", "deploy to specified env"
-    method_options :migrate => :boolean,
-                   :config  => :string,
-                   :comment => :string
+    %w{deploy rollback start stop restart undeploy}.each do |command|
+      class_eval <<-EOF
+        desc "#{command} [staging|production]", "#{command} to specified env"
+        method_options :migrate => :boolean,
+                       :config  => :string,
+                       :comment => :string
 
-    def deploy(env="production")
+        def #{command}(env="production")
+          run(:#{command}, env)
+        end
+      EOF
+    end
+
+    private
+
+    def run(command, env)
       application = Scalarium::Application.new
 
       application.config do |x|
@@ -16,13 +26,13 @@ module Scalarium
         x.slug = config[env]["slug"]
       end
 
-      application.deploy(
+      deploy_options = {
         :run_migrations => options.migrate?,
         :comment => options[:comment]
-      )
-    end
+      }
 
-    private
+      application.send(command, deploy_options)
+    end
 
     def config
       @config ||= begin

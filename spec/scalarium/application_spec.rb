@@ -87,5 +87,24 @@ describe Scalarium::Application do
       it { should have_requested(:post, "https://manage.scalarium.com/applications/railslove/deployments").
             with {|req| req.body.match(/comment%5D=Hello/) } }
     end
+
+    %w{deploy rollback start stop restart undeploy}.each do |command|
+      context "when performing a #{command}" do
+        before do
+          @application.config do |c|
+            c.email = "test@email.com"
+            c.password = "password"
+            c.slug = "railslove"
+          end
+
+          @application.send(command)
+        end
+
+        subject { WebMock::API }
+
+        it { should have_requested(:post, "https://manage.scalarium.com/applications/railslove/deployments").
+              with {|req| req.body.match(/command%5D=#{command}/) } }
+      end
+    end
   end
 end

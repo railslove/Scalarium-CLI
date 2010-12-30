@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    scalarium_cli (0.0.1)
+    scalarium_cli (0.0.2)
       mechanize (~> 1.0.0)
       thor (~> 0.14.6)
 
