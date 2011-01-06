@@ -15,7 +15,44 @@ module Scalarium
       EOF
     end
 
+    desc "setup", "Adds config/scalarium.yml to .gitignore and creates config/scalarium.yml and config/scalarium.yml.example"
+    def setup
+      # Add config/scalarium.yml to .gitignore
+      puts "Adding config/scalarium.yml to .gitignore"
+      File.open(".gitignore", "a") do |file|
+        file.write("config/scalarium.yml")
+      end
+
+      # Create config/scalarium.yml
+      puts "Creating config/scalarium.yml"
+      write_config_yml
+
+      # Create config/scalarium.yml.example
+      puts "Creating config/scalarium.yml.example"
+      write_config_yml(:example)
+    end
+
     private
+
+    def write_config_yml(type=nil)
+      filename = type ? "config/scalarium.yml.example" : "config/scalarium.yml"
+
+      File.open(filename, "w") do |file|
+        file.write <<-EOF
+credentials: &CREDENTIALS
+  email: email@email.com
+  password: password
+
+staging:
+  <<: *CREDENTIALS
+  slug: XXX
+
+production:
+  <<: *CREDENTIALS
+  slug: XXX
+        EOF
+      end
+    end
 
     def run(command, env)
       application = Scalarium::Application.new
