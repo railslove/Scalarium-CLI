@@ -19,8 +19,12 @@ module Scalarium
     def setup
       # Add config/scalarium.yml to .gitignore
       puts "Adding config/scalarium.yml to .gitignore"
-      File.open(".gitignore", "a") do |file|
-        file.write("config/scalarium.yml")
+      File.open(".gitignore", "a+") do |file|
+        if File.read(".gitignore").match(/config\/scalarium\.yml/)
+          puts "\tLooks like you already have it. Moving on..."
+        else
+          file.write("\nconfig/scalarium.yml")
+        end
       end
 
       # Create config/scalarium.yml
@@ -37,8 +41,11 @@ module Scalarium
     def write_config_yml(type=nil)
       filename = type ? "config/scalarium.yml.example" : "config/scalarium.yml"
 
-      File.open(filename, "w") do |file|
-        file.write <<-EOF
+      if File.exists?(filename)
+        puts "\tLooks like you already have it. Moving on..."
+      else
+        File.open(filename, "w") do |file|
+          file.write <<-EOF
 credentials: &CREDENTIALS
   email: email@email.com
   password: password
@@ -50,7 +57,8 @@ staging:
 production:
   <<: *CREDENTIALS
   slug: XXX
-        EOF
+          EOF
+        end
       end
     end
 
