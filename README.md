@@ -10,17 +10,15 @@ Allows you to deploy apps hosted on Scalarium from the command line.
 
 ### Rails
 
-Add `scalarium.yml` in your config folder. It should look something like:
+Run `sca setup`
 
-    staging:
-      email: test@test.com
-      password: password
-      slug: YYY
+This will:
 
-    production:
-      email: test@test.com
-      password: password
-      slug: XXX
+* Add config/scalarium.yml
+* Add config/scalarium.yml.example
+* Add config/scalarium.yml to you .gitignore
+
+If any of the above already exist, it will skip the creation.
 
 You will find the slug of the application inside the URL:
 
