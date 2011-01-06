@@ -19,10 +19,10 @@ module Scalarium
     def setup
       # Add config/scalarium.yml to .gitignore
       puts "Adding config/scalarium.yml to .gitignore"
-      File.open(".gitignore", "a+") do |file|
-        if File.read(".gitignore").match(/config\/scalarium\.yml/)
-          puts "\tLooks like you already have it. Moving on..."
-        else
+      if File.read(".gitignore").match(/config\/scalarium\.yml/)
+        puts "\tLooks like you already have it. Moving on..."
+      else
+        File.open(".gitignore", "a+") do |file|
           file.write("\nconfig/scalarium.yml")
         end
       end
